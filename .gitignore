@@ -1,3 +1,14 @@
 # Project exclude paths
 /.gradle/
 .idea
+/build/classes/java/
+/build/test-results/test/binary/
+/build/classes/java/
+/build/test-results/test/binary/
+/build/reports/tests/test/
+build/generated/
+build/reports/tests/test/classes/com.chiron.book.springboot.web.PostsApiControllerTeste.html
+build/resources/
+build/test-results/test/TEST-com.chiron.book.springboot.web.PostsApiControllerTeste.xml
+build/tmp/
+src/test/resources/
