@@ -12,3 +12,6 @@ build/resources/
 build/test-results/test/TEST-com.chiron.book.springboot.web.PostsApiControllerTeste.xml
 build/tmp/
 src/test/resources/
+application-oauth.properties
+/src/main/resources/application-oauth.properties
+/build/
