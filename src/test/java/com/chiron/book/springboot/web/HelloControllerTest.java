@@ -67,22 +67,25 @@ public class HelloControllerTest {
         //set에 기존 ip를 담는다
         addSet(set, ipArrays(ips));
         System.out.println("=======1=======");
-
-        System.out.println("=======2=======");
         String beforeIps = "192.168.120.33";
         String afterIps = "255.168.120.45";
 
         //중복값 test
         addSet(set, ipArrays(beforeIps));
+
         //신규값 add
         addSet(set,  ipArrays(afterIps));
-        System.out.println("=======3=======");
+
+        //해당값 제거
         String removeIp = "192.168.120.33";
         set.remove(removeIp);
 
-        System.out.println(set);
+        //여러 ip제거
+        String removeIps = "192.168.120.32, 192.168.120.31";
+        reomoveSet(set,ipArrays(removeIps));
 
         Map<String, Object> param = new HashMap<>();
+        //[] 대괄호 제거 하여 파라미터 전달
         param.put("ip", set.toString().replaceAll("[\\[\\]]", ""));
         System.out.println(param);
 
@@ -101,4 +104,11 @@ public class HelloControllerTest {
         }
         return set;
     }
+    public Set<String> reomoveSet(Set set, String[] ips){
+        for (String ip : ips) {
+            set.remove(ip);
+        }
+        return set;
+    }
+
 }
