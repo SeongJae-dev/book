@@ -81,6 +81,7 @@ public class HelloControllerTest {
 
         //[] 대괄호 제거 하여 파라미터 전달
         param.put("ip", set.toString().replaceAll("[\\[\\]]", ""));
+
         System.out.println(param);
 
     }
