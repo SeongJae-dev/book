@@ -57,13 +57,15 @@ public class HelloControllerTest {
     @Test
     public void testSetList() {
         String ips = "192.168.120.33,192.168.120.32, 192.168.120.31";
+        String beforeIps = "192.168.120.33";
+        String afterIps = "255.168.120.45";
+        String removeIp = "192.168.120.33";
+        String removeIps = "192.168.120.32, 192.168.120.31";
         Set<String> set = new HashSet();
+        Map<String, Object> param = new HashMap<>();
 
         //set에 기존 ip를 담는다
         addSet(set, ipArrays(ips));
-        System.out.println("=======1=======");
-        String beforeIps = "192.168.120.33";
-        String afterIps = "255.168.120.45";
 
         //중복값 test
         addSet(set, ipArrays(beforeIps));
@@ -72,14 +74,11 @@ public class HelloControllerTest {
         addSet(set,  ipArrays(afterIps));
 
         //해당값 제거
-        String removeIp = "192.168.120.33";
         set.remove(removeIp);
 
         //여러 ip제거
-        String removeIps = "192.168.120.32, 192.168.120.31";
         reomoveSet(set,ipArrays(removeIps));
 
-        Map<String, Object> param = new HashMap<>();
         //[] 대괄호 제거 하여 파라미터 전달
         param.put("ip", set.toString().replaceAll("[\\[\\]]", ""));
         System.out.println(param);
