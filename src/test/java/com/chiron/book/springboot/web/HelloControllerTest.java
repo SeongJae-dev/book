@@ -75,17 +75,16 @@ public class HelloControllerTest {
         //중복값 test
         addSet(set, ipArrays(beforeIps));
         //신규값 add
-        addSet(set, ipArrays(afterIps));
-
+        addSet(set,  ipArrays(afterIps));
         System.out.println("=======3=======");
         String removeIp = "192.168.120.33";
         set.remove(removeIp);
 
         System.out.println(set);
-        System.out.println(set);
-        String test = set.toString();
-        System.out.println(test);
 
+        Map<String, Object> param = new HashMap<>();
+        param.put("ip", set.toString().replaceAll("[\\[\\]]", ""));
+        System.out.println(param);
 
     }
 
