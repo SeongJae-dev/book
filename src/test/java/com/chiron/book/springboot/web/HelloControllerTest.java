@@ -12,6 +12,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import org.springframework.test.web.servlet.ResultActions;
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.is;
@@ -26,6 +31,7 @@ public class HelloControllerTest {
 
     @Autowired
     private MockMvc mvc;
+
 
     @WithMockUser(roles="USER")
     @Test
@@ -51,5 +57,49 @@ public class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name",is(name)))
                 .andExpect(jsonPath("$.amount",is(amount)));
+    }
+    @Test
+    public void testSetList() {
+        String ips = "192.168.120.33,192.168.120.32, 192.168.120.31";
+        Set<String> set = new HashSet();
+        List<Set> list = new ArrayList<>();
+
+        //set에 기존 ip를 담는다
+        addSet(set, ipArrays(ips));
+        System.out.println("=======1=======");
+
+        System.out.println("=======2=======");
+        String beforeIps = "192.168.120.33";
+        String afterIps = "255.168.120.45";
+
+        //중복값 test
+        addSet(set, ipArrays(beforeIps));
+        //신규값 add
+        addSet(set, ipArrays(afterIps));
+
+        System.out.println("=======3=======");
+        String removeIp = "192.168.120.33";
+        set.remove(removeIp);
+
+        System.out.println(set);
+        System.out.println(set);
+        String test = set.toString();
+        System.out.println(test);
+
+
+    }
+
+
+    public static String[] ipArrays(String ip) {
+        String arr[];
+        arr = ip.replaceAll(" ", "").split(",");
+        return arr;
+    }
+
+    public Set<String> addSet(Set set, String[] ips){
+        for (String ip : ips) {
+            set.add(ip);
+        }
+        return set;
     }
 }
