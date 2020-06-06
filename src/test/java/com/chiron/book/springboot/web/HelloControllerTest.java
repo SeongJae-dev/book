@@ -11,11 +11,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import org.springframework.test.web.servlet.ResultActions;
-
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -62,7 +58,6 @@ public class HelloControllerTest {
     public void testSetList() {
         String ips = "192.168.120.33,192.168.120.32, 192.168.120.31";
         Set<String> set = new HashSet();
-        List<Set> list = new ArrayList<>();
 
         //set에 기존 ip를 담는다
         addSet(set, ipArrays(ips));
@@ -98,7 +93,8 @@ public class HelloControllerTest {
         return arr;
     }
 
-    public Set<String> addSet(Set set, String[] ips){
+    public Set addSet(Set set, String[] ips){
+//        Collections.addAll(set, ips);
         for (String ip : ips) {
             set.add(ip);
         }
